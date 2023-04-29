@@ -1,41 +1,52 @@
 package us.lviv.lgs.car;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+
         while (true) {
             Scanner num = new Scanner(System.in);
             switch (num.nextInt()) {
                 case 1: {
-                    Auto[][] carArr = new Auto[getRandomNumber(1, 4)][getRandomNumber(1, 4)];
 
-                    for (int i = 0; i < carArr.length; i++) {
-                        for (int j = 0; j < carArr[i].length; j++) {
-                            carArr[i][j] = new Auto(getRandomNumber(100, 250),
+                    //Auto[][] carArr = new Auto[getRandomNumber(1, 4)][getRandomNumber(1, 4)];
+                    List<Auto> carArr = new ArrayList<Auto>();
+
+                    for (int i = 0; i < getRandomNumber(1, 4); i++) {
+                        List<Auto> carArr1 = new ArrayList<Auto>();
+                        for (int j = 0; j < getRandomNumber(1, 4); j++) {
+                            carArr1.add (new Auto(getRandomNumber(100, 250),
                                     getRandomNumber(1990, 2023),
                                     new Wheel(getRandomNumber(35, 60),
                                             getMaterialOfWheel()),
-                                    new Engine(getRandomNumber(2, 12)));
+                                    new Engine(getRandomNumber(2, 12))));
                         }
+                        carArr.addAll(carArr1);
                     }
-                    System.out.println(Arrays.deepToString(carArr));
+                    System.out.println(carArr);
                 }
                 break;
 
                 case 2: {
-                    Auto[] carArr = new Auto[getRandomNumber(1, 4)];
+
+                    //Auto[] carArr = new Auto[getRandomNumber(1, 4)];
+
+                    List<Auto> carArr = new ArrayList<Auto>();
 
                     Auto auto = new Auto(getRandomNumber(100, 250),
                             getRandomNumber(1990, 2023),
                             new Wheel(getRandomNumber(35, 60),
                                     getMaterialOfWheel()),
                             new Engine(getRandomNumber(2, 12)));
-                    Arrays.fill(carArr, auto);
 
+                    for (int i = 0; i < getRandomNumber(1, 4); i++) {
+                        carArr.add(auto);
+                    }
 
-                    System.out.println(Arrays.deepToString(carArr));
+                    System.out.println(carArr);
 
                 }
                 break;
